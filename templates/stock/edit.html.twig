@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Stock{% endblock %}
+
+{% block body %}
+<h1>Edit Stock</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.color) }}
+    {{ form_row(form.quantity) }}
+    {{ form_row(form.maintenance_interval) }}
+    <button class="btn btn-primary">Update Stock</button>
+{{ form_end(form) }}
+{% endblock %}

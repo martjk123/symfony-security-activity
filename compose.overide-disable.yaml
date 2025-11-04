@@ -1,0 +1,28 @@
+services:
+  ###> doctrine/doctrine-bundle ###
+  database:
+    image: postgres:${POSTGRES_VERSION:-16}-alpine
+    container_name: gym_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+    ports:
+      - "5432:5432"  # Optional: exposes PostgreSQL to host
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+      # Optional bind mount (uncomment if you want local persistence)
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+    networks:
+      - gym_network
+  ###< doctrine/doctrine-bundle ###
+
+volumes:
+  ###> doctrine/doctrine-bundle ###
+  database_data:
+  ###< doctrine/doctrine-bundle ###
+
+networks:
+  gym_network:
+    driver: bridge
