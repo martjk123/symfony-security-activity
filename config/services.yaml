@@ -10,12 +10,11 @@ services:
         autoconfigure: true
         public: true
 
-    # ✅ Controllers must be registered BEFORE the general App\ block
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # ✅ General App\ registration (should come AFTER controllers)
+ 
     App\:
         resource: '../src/'
         exclude:
